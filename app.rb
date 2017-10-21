@@ -4,8 +4,8 @@ require 'bundler/setup'
 require 'sinatra'
 require 'jekyll-timeago'
 
-
 configure { set :server, :puma }
+set :port, 9494
 
 BIRTH = DateTime.parse('2017-10-12T12:06:00+05:30')
 
