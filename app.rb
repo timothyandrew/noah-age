@@ -14,10 +14,20 @@ def since_birth
   Jekyll::Timeago::Core.timeago(BIRTH, DateTime.now, depth: 4)
 end
 
-def days_since_birth
-  (DateTime.now - BIRTH).to_i
+def summary
+  base = DateTime.now - BIRTH
+  days = base.to_i
+  hours = (base * 24).to_i
+  minutes = (base * 24 * 60).to_i
+  seconds = (base * 24 * 60 * 60).to_i
+
+  "Noah has been around for ...
+   #{days} days
+   #{hours} hours
+   #{minutes} minutes
+   #{seconds} seconds"
 end
 
 get '/' do
-  "Noah Andrew was born #{since_birth} (#{days_since_birth + 1} days old)."
+  "Noah Andrew was born #{since_birth}.\n\n#{summary}"
 end
