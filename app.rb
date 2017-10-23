@@ -7,6 +7,7 @@ require 'jekyll-timeago'
 configure { set :server, :puma }
 set :bind, '127.0.0.1'
 set :port, 9494
+set :haml, :format => :html5
 
 BIRTH = DateTime.parse('2017-10-12T12:06:00+05:30')
 
@@ -20,18 +21,15 @@ end
 
 def summary
   base = now - BIRTH
-  days = base.to_i
-  hours = (base * 24).to_i
-  minutes = (base * 24 * 60).to_i
-  seconds = (base * 24 * 60 * 60).to_i
 
-  "Noah has been around for ...
-   #{days} days
-   #{hours} hours
-   #{minutes} minutes
-   #{seconds} seconds"
+  {
+    days: base.to_i,
+    hours: (base * 24).to_i,
+    minutes: (base * 24 * 60).to_i,
+    seconds: (base * 24 * 60 * 60).to_i
+  }
 end
 
 get '/' do
-  "Noah Andrew was born #{since_birth}.\n\n#{summary}"
+  haml :base, locals: {summary: summary}
 end

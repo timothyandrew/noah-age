@@ -1,0 +1,20 @@
+%div.container
+  %div.jumbotron
+    %h1
+      = "Noah Andrew was born #{since_birth}."
+
+    %hr.my-4
+
+    %p.display-5
+      Noah has been around for ...
+      %ul
+        %li
+          = "#{summary[:days]} days"
+        %li
+          = "#{summary[:hours]} hours"
+        %li
+          = "#{summary[:minutes]} minutes"
+        %li
+          = "#{summary[:seconds]} seconds"
+
+
