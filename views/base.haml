@@ -1,4 +1,4 @@
-%div.container
+%div.container#base-app
   %div.jumbotron
     %h1
       = "Noah Andrew was born #{since_birth}. 👶"
@@ -9,12 +9,15 @@
       Noah has been around for ...
       %ul
         %li
-          = "#{summary[:days]} days"
+          {{ summary.days }} days
         %li
-          = "#{summary[:hours]} hours"
+          {{ summary.hours }} hours
         %li
-          = "#{summary[:minutes]} minutes"
+          {{ summary.minutes }} minutes
         %li
-          = "#{summary[:seconds]} seconds"
+          {{ summary.seconds }} seconds
 
+:javascript
+  var summary = JSON.parse('#{summary.to_json}');
 
+%script{src: "js/base.js"}
